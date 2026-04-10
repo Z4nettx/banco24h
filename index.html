@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Banco 24h — Fintech Informatica</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <div class="header-risc"></div>
+    <h1>Bem vindo ao caixa global 24h</h1> <i class="ph ph-timer"></i>
+  </header>
+  <main>
+    <h2 id="h2-login">Seu dinheiro no seu ritmo, <br>a qualquer hora do dia ou da noite.</h2>
+    <div class="container-main" id="container-main">
+      <div class="main-login" id="secao-login">
+        <form action="">
+          <h2>Insira suas credenciais para continuar!</h2>
+          <input type="text" placeholder="CPF do titular" id="input-cpf">
+          <input type="password" placeholder="Senha" id="input-senha">
+          <button type="button" id="buttonLogar">Entrar</button>
+          <div id="msg-login"></div>
+        </form>
+        <div class="img-left">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Ita%C3%BA_Unibanco_logo_2023.svg/960px-Ita%C3%BA_Unibanco_logo_2023.svg.png"
+            alt="">
+        </div>
+      </div>
+    </div>
+
+
+    <div class="main-infos oculto" id="secao-painel">
+      <div class="title" id="header-banco">
+        <h2>Bem vindo de volta Caio!</h2>
+      </div>
+      <div class="options">
+        <div class="saldo">
+          <p>Seu saldo</p>
+          <div class="saldo-div">
+            <p id="saldo-display">--</p>
+            <i class="ph ph-eye" id="btn-toggle-saldo"></i>
+          </div>
+        </div>
+
+        <div class="buttons-group oculto" id="secao-acoes">
+          <div class="buttons-group-separar">
+            <div class="buttons-options" id="btn-transferencia">Transferir <i class="ph ph-arrow-square-out"></i>
+            </div>
+            <div class="buttons-options" id="btn-deposito">Depositar <i class="ph ph-arrow-square-in"></i></div>
+          </div>
+
+          <div class="buttons-group-separar">
+            <div class="buttons-options" id="btn-saque">Sacar <i class="ph ph-money-wavy"></i></div>
+            <div class="buttons-options" id="btn-senha">Trocar senha <i class="ph ph-password"></i></div>
+          </div>
+        </div>
+
+        <div class="button-pdf" id="btn-pdf">
+          <p>Gerar extrato em pdf</p>
+          <i class="ph ph-download-simple"></i>
+        </div>
+      </div>
+
+      <div class="extrato-container oculto" id="secao-extrato">
+        <div class="top-title">
+          <h3>Lista de extrato bancário</h3>
+        </div>
+        <div class="exib-extrato">
+          <table id="tabela-extrato">
+            <thead>
+              <tr>
+                <th>Data / Hora</th>
+                <th>Tipo</th>
+                <th>Obs</th>
+                <th class="td-valor">Valor</th>
+                <th class="td-saldo">Saldo Apos</th>
+              </tr>
+            </thead>
+            <tbody id="extrato-corpo">
+              <tr>
+                <td colspan="5" class="extrato-vazio">Nenhuma transacao registrada.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-overlay oculto" id="modal-overlay">
+        <div class="modal-box" id="modal-box">
+
+        </div>
+      </div>
+      <div class="photo-img">
+        <img class="logo-banco"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Ita%C3%BA_Unibanco_logo_2023.svg/960px-Ita%C3%BA_Unibanco_logo_2023.svg.png"
+          alt="">
+      </div>
+    </div>
+  </main>
+  <nav>
+    <div class="space-for-circle-active"></div>
+    <div class="circle-groups">
+      <div class="circle-groups">
+        <input type="radio" name="bancos" id="itau" value="itau" hidden>
+        <input type="radio" name="bancos" id="nubank" value="nubank" hidden>
+        <input type="radio" name="bancos" id="bradesco" value="bradesco" hidden>
+        <input type="radio" name="bancos" id="santander" value="santander" hidden>
+        <input type="radio" name="bancos" id="picpay" value="picpay" hidden>
+        <input type="radio" name="bancos" id="banco-brasil" value="banco-brasil" hidden>
+        <label class="circle itau" for="itau"><img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Ita%C3%BA_Unibanco_logo_2023.svg/960px-Ita%C3%BA_Unibanco_logo_2023.svg.png"
+            alt=""></label>
+        <label class="circle nubank" for="nubank"><img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Nubank_logo_2021.svg/1280px-Nubank_logo_2021.svg.png"
+            alt=""></label>
+        <label class="circle bradesco" for="bradesco"><img
+            src="https://companieslogo.com/img/orig/BBD-6b19aac5.png?t=1720244490" alt=""></label>
+        <label class="circle santander" for="santander"><img
+            src="https://www.nicepng.com/png/full/407-4073616_sc-flame-santander-logo.png" alt=""></label>
+        <label class="circle picpay" for="picpay"><img
+            src="https://images.seeklogo.com/logo-png/39/2/picpay-logo-png_seeklogo-393244.png" alt=""></label>
+        <label class="circle banco-brasil" for="banco-brasil"><img
+            src="https://cdn.freebiesupply.com/logos/large/2x/banco-do-brasil-01-logo-png-transparent.png"
+            alt=""></label>
+      </div>
+    </div>
+  </nav>
+
+  <div class="circle-green-pai">
+    <div class="circle-green"></div>
+  </div>
+
+  <script type="module">
+    // Referencias fixas
+    import { BancoController } from "./controller/bancoController.js";
+
+    const banco = new BancoController();
+    const secaoLogin = document.getElementById('secao-login');
+    const h2Login = document.getElementById('h2-login');
+    const secaoPainel = document.getElementById('secao-painel');
+    const secaoAcoes = document.getElementById('secao-acoes');
+    const secaoExtrato = document.getElementById('secao-extrato');
+    const inputCPF = document.getElementById('input-cpf');
+    const inputSenha = document.getElementById('input-senha');
+    const msgLogin = document.getElementById('msg-login');
+    const msgSistema = document.getElementById('msg-sistema');
+    const headerBanco = document.getElementById('header-banco');
+    const saldoDisplay = document.getElementById('saldo-display');
+    const extratoCorpo = document.getElementById('extrato-corpo');
+    const modalOverlay = document.getElementById('modal-overlay');
+    const modalBox = document.getElementById('modal-box');
+    const inputRadios = document.getElementsByName('bancos');
+    const secaoMain = document.getElementById('container-main');
+    const buttonLogar = document.getElementById('buttonLogar')
+
+
+    // funcoes de mostrar paginas
+    function homepage() {
+      secaoLogin.classList.add('oculto');
+      secaoPainel.classList.add('oculto');
+      h2Login.classList.remove('oculto');
+      secaoAcoes.classList.add('oculto');
+      secaoExtrato.classList.add('oculto');
+
+    }
+
+
+    function mostrarPainel(nome) {
+      secaoLogin.classList.add('oculto');
+      h2Login.classList.add('oculto');
+      secaoPainel.classList.remove('oculto');
+      secaoAcoes.classList.remove('oculto');
+      secaoExtrato.classList.remove('oculto');
+
+    }
+    function mostrarLogin() {
+      secaoLogin.classList.remove('oculto');
+      h2Login.classList.add('oculto');
+      secaoPainel.classList.add('oculto');
+      secaoAcoes.classList.add('oculto');
+      secaoExtrato.classList.add('oculto');
+
+      banco.__Logar(inputCPF, inputSenha, buttonLogar);
+    }
+    let ultimaClasse = "";
+    inputRadios.forEach(banco => {
+      let bancoClicado = banco.addEventListener("change", (event) => {
+        let nomeBanco = event.target.value;
+
+        if (nomeBanco) {
+
+          if (ultimaClasse) {
+            secaoMain.classList.remove(ultimaClasse);
+          }
+
+          mostrarLogin();
+          secaoMain.classList.add(nomeBanco);
+          ultimaClasse = nomeBanco;
+          return true;
+
+        }
+      });
+      if (bancoClicado != true) {
+        homepage();
+
+      }
+    });
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+    <title>Caixa 24h</title>
+</head>
+
+<body>
+    <div id="msg-sistema" class="aviso">Carregando sistema...</div>
+
+    <!-- ══════════════════════════════════════════════════════════
+            SECAO LOGIN
+      ══════════════════════════════════════════════════════════ -->
+    <div class="card" id="secao-login">
+        <h3>Selecione o banco</h3>
+
+        <!-- Radios gerados dinamicamente pelo JS -->
+        <div class="radio-group" id="radio-bancos"></div>
+
+        <label class="campo-label" for="input-cpf">CPF</label>
+        <input type="text" id="input-cpf" placeholder="000.000.000-00" maxlength="14" />
+
+        <label class="campo-label" for="input-senha">Senha</label>
+        <input type="password" id="input-senha" placeholder="••••••••" />
+
+        <!-- Mensagem de erro/feedback dentro do form -->
+        <div class="msg-form" id="msg-login"></div>
+
+        <button class="btn-primario" id="btn-login">Entrar</button>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+            SECAO PAINEL (pos-login)
+      ══════════════════════════════════════════════════════════ -->
+    <div class="card oculto" id="secao-painel">
+        <div id="header-banco">—</div>
+        <h3>Saldo Atual</h3>
+        <div class="saldo-wrapper">
+            <div id="saldo-display">—</div>
+            <button id="btn-toggle-saldo">Ocultar</button>
+        </div>
+    </div>
+
+    <div class="card oculto" id="secao-acoes">
+        <h3>Operacoes</h3>
+        <div class="grid-acoes">
+            <button class="btn-secundario" id="btn-saque">Sacar</button>
+            <button class="btn-secundario" id="btn-deposito">Depositar</button>
+            <button class="btn-secundario" id="btn-transferencia">Transferir</button>
+            <button class="btn-secundario" id="btn-senha">Trocar Senha</button>
+        </div>
+        <hr class="separador" />
+        <button class="btn-secundario" id="btn-pdf">Gerar PDF do Extrato</button>
+        <button class="btn-perigo" id="btn-logout">Sair</button>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+            TABELA DE EXTRATO (sempre visivel pos-login)
+      ══════════════════════════════════════════════════════════ -->
+    <div class="card extrato-card oculto" id="secao-extrato">
+        <h3>Extrato</h3>
+        <table id="tabela-extrato">
+            <thead>
+                <tr>
+                    <th>Data / Hora</th>
+                    <th>Tipo</th>
+                    <th>Obs</th>
+                    <th class="td-valor">Valor</th>
+                    <th class="td-saldo">Saldo Apos</th>
+                </tr>
+            </thead>
+            <tbody id="extrato-corpo">
+                <tr>
+                    <td colspan="5" class="extrato-vazio">Nenhuma transacao registrada.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+            MODAIS DE OPERACAO
+            Estrutura reutilizavel: um overlay com uma box interna.
+            O JS troca o conteudo da box conforme a operacao.
+      ══════════════════════════════════════════════════════════ -->
+    <div class="modal-overlay oculto" id="modal-overlay">
+        <div class="modal-box" id="modal-box">
+            <!-- Conteudo injetado dinamicamente pelo JS -->
+        </div>
+    </div>
+</body>
+
+</html>
