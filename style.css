@@ -302,6 +302,7 @@ nav .circle-groups {
 
 .itau {
     background-color: rgba(255, 183, 81, 0.6);
+    color: #BD6E00;
 }
 
 .itau:hover {
@@ -336,11 +337,11 @@ nav .circle-groups {
     background-color: rgba(175, 255, 166, 1);
 }
 
-.banco-brasil {
+.bancobrasil {
     background-color: rgba(65, 91, 208, 0.6);
 }
 
-.banco-brasil:hover {
+.bancobrasil:hover {
     background-color: rgba(65, 91, 208, 1);
 }
 
